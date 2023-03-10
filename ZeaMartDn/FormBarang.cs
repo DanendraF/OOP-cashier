@@ -54,6 +54,11 @@ namespace ZeaMartDn
             }
         }
 
+        private void txtkode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public void UpdateInfo()
         {
             button2.Text = "Update";
@@ -105,12 +110,12 @@ namespace ZeaMartDn
                 pictureBox1.Image.Save(ms, pictureBox1.Image.RawFormat);
                 byte[] img = ms.ToArray();
 
-                string sql = "INSERT INTO zeamart VALUES(NULL, @Produk, @Kode, @Harga, @Stok, @Gambar)";
+                string sql = "INSERT INTO zeamart VALUES(NULL, @Kode, @Produk, @Harga, @Stok, @Gambar)";
                 MySqlConnection conn = GetConnection();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.Add("@Produk", MySqlDbType.VarChar).Value = txtnama.Text;
                 cmd.Parameters.Add("@Kode", MySqlDbType.VarChar).Value = txtkode.Text;
+                cmd.Parameters.Add("@Produk", MySqlDbType.VarChar).Value = txtnama.Text;
                 cmd.Parameters.Add("@Harga", MySqlDbType.VarChar).Value = txtharga.Text;
                 cmd.Parameters.Add("@Stok", MySqlDbType.VarChar).Value = txtstok.Text;
                 cmd.Parameters.Add("@Gambar", MySqlDbType.Blob).Value = img;
@@ -135,7 +140,7 @@ namespace ZeaMartDn
                 pictureBox1.Image.Save(ms, pictureBox1.Image.RawFormat);
                 byte[] img = ms.ToArray();
 
-                string sql = "UPDATE zeamart SET namabarang=@Produk, kode=@Kode, harga=@Harga, stok=@Stok, image=@Gambar WHERE ID=@Id";
+                string sql = "UPDATE zeamart SET kode=@Kode, namabarang=@Produk, harga=@Harga, stok=@Stok, image=@Gambar WHERE ID=@Id";
                 MySqlConnection conn = GetConnection();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.CommandType = System.Data.CommandType.Text;

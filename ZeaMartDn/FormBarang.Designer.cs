@@ -151,6 +151,7 @@
             this.txtkode.Name = "txtkode";
             this.txtkode.Size = new System.Drawing.Size(199, 22);
             this.txtkode.TabIndex = 0;
+            this.txtkode.TextChanged += new System.EventHandler(this.txtkode_TextChanged);
             // 
             // label1
             // 
